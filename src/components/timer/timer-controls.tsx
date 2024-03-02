@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useTimerContext } from "./timer-provider";
 
 export const TimerControls = () => {
-  const { start, pause, reset, set, isRunning } = useTimerContext();
+  const { start, pause, reset, set, isRunning, isComplete } = useTimerContext();
 
   const [value, setValue] = useState(300);
 
@@ -34,7 +34,7 @@ export const TimerControls = () => {
       </div>
 
       {!isRunning && (
-        <Button onClick={start}>
+        <Button disabled={isComplete} onClick={start}>
           <PlayIcon className="mr-2 h-4 w-4" /> Start
         </Button>
       )}
