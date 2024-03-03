@@ -7,10 +7,15 @@ import {
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { useState } from "react";
-import { useTimerContext } from "./timer-provider";
+import { useTimerStore } from "./timer-store";
 
 export const TimerControls = () => {
-  const { start, pause, reset, set, isRunning, isComplete } = useTimerContext();
+  const start = useTimerStore((state) => state.start);
+  const pause = useTimerStore((state) => state.pause);
+  const reset = useTimerStore((state) => state.reset);
+  const set = useTimerStore((state) => state.set);
+  const isRunning = useTimerStore((state) => state.isRunning);
+  const isComplete = useTimerStore((state) => state.isComplete);
 
   const [value, setValue] = useState(300);
 

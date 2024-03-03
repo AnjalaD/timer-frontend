@@ -1,13 +1,11 @@
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { useConnectRemoteStore } from "./connectRemoteStore";
-import { useTimerContext } from "./timer-provider";
+import { useConnectRemoteStore } from "./connect-remote-store";
 
 export const Remotes = () => {
   const hasRemotes = useConnectRemoteStore((state) => state.ws !== undefined);
   const connect = useConnectRemoteStore((state) => state.connect);
 
-  const { start, pause } = useTimerContext();
 
   return (
     <Card>
@@ -17,7 +15,7 @@ export const Remotes = () => {
       <CardContent>
         {!hasRemotes ? (
           <div>
-            <Button onClick={() => connect(start, pause)}>Add Remote</Button>
+            <Button onClick={connect}>Add Remote</Button>
           </div>
         ) : (
           <RemoteRoom />

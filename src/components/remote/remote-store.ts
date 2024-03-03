@@ -15,7 +15,6 @@ export type RemoteStore = {
 
 export const useRemoteStore = create<RemoteStore>()(
   devtools(
-    // persist(
     immer((set) => ({
       ws: undefined,
       isReady: false,
@@ -74,9 +73,5 @@ export const useRemoteStore = create<RemoteStore>()(
         });
       },
     }))
-    //   {
-    //     name: "remote-store",
-    //   }
-    // )
   )
 );

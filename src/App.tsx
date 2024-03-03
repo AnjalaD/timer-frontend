@@ -1,7 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { HomePage } from "./pages/home-page";
 import { TimerPage } from "./pages/timer-page";
-import { ActiveProvider } from "./components/timer/active-provider";
 import { RemotePage } from "./pages/remote-page";
 
 function App() {
@@ -9,7 +8,6 @@ function App() {
     {
       path: "/",
       element: <HomePage />,
-      
     },
     {
       path: "/timer",
@@ -21,11 +19,7 @@ function App() {
     },
   ]);
 
-  return (
-    <ActiveProvider>
-      <RouterProvider router={router} />
-    </ActiveProvider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

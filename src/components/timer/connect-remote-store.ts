@@ -3,25 +3,25 @@ import { devtools } from "zustand/middleware";
 import { BACKEND_WS_URL } from "../../../config";
 import { decodeMessage, encodeMessage } from "../../util/ws";
 import { immer } from "zustand/middleware/immer";
+import { useTimerStore } from "./timer-store";
 
 export type ConnectRemoteStore = {
   ws: WebSocket | undefined;
   isReady: boolean;
   roomId: string | undefined;
   connectedRemotes: number;
-  connect: (onStart: any, onPause: any) => void;
+  connect: () => void;
   disconnect: () => void;
 };
 
 export const useConnectRemoteStore = create<ConnectRemoteStore>()(
   devtools(
-    // persist(
     immer((set) => ({
       ws: undefined,
       isReady: false,
       roomId: undefined,
       connectedRemotes: 0,
-      connect: (onStart, onPause) =>
+      connect: () =>
         set((state) => {
           const ws = new WebSocket(`${BACKEND_WS_URL}/timer`);
           console.log("Connecting to server...");
@@ -64,11 +64,11 @@ export const useConnectRemoteStore = create<ConnectRemoteStore>()(
                 break;
               case "START":
                 console.log("Start:", decoded.data);
-                onStart();
+                useTimerStore.getState().start();
                 break;
               case "PAUSE":
                 console.log("Pause:", decoded.data);
-                onPause();
+                useTimerStore.getState().pause();
                 break;
               default:
                 console.log("Unhandled message type:", decoded.messageType);
@@ -88,9 +88,5 @@ export const useConnectRemoteStore = create<ConnectRemoteStore>()(
         });
       },
     }))
-    //   {
-    //     name: "connect-remote-store",
-    //   }
-    // )
   )
 );

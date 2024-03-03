@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useRemoteStore } from "../components/remote/remoteStore";
+import { useRemoteStore } from "../components/remote/remote-store";
 import { useEffect } from "react";
 import { Button } from "../components/ui/button";
 

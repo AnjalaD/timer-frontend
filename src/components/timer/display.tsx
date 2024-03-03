@@ -1,17 +1,17 @@
 import { Clock } from "./clock";
 import { CountDown } from "./count-down";
-import { useTimerContext } from "./timer-provider";
-import { useUiContext } from "./ui-provider";
+import { useSettingsStore } from "./settings-store";
+import { useTimerStore } from "./timer-store";
 
 export const Display = () => {
-  const { time } = useTimerContext();
+  const time = useTimerStore((state) => state.time);
 
-  const { isClockVisible } = useUiContext();
+  const clockVisible = useSettingsStore((state) => state.clockVisible);
 
   return (
     <div className="flex-[3] flex flex-col justify-center items-center gap-2">
       <CountDown time={time} />
-      {isClockVisible && <Clock />}
+      {clockVisible && <Clock />}
     </div>
   );
 };
