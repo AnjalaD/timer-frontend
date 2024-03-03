@@ -9,6 +9,7 @@ function App() {
     {
       path: "/",
       element: <HomePage />,
+      
     },
     {
       path: "/timer",
