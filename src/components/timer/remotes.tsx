@@ -1,4 +1,5 @@
 import { Button } from "../ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { useConnectRemoteStore } from "./connectRemoteStore";
 import { useTimerContext } from "./timer-provider";
 
@@ -8,12 +9,21 @@ export const Remotes = () => {
 
   const { start, pause } = useTimerContext();
 
-  return !hasRemotes ? (
-    <div>
-      <Button onClick={() => connect(start, pause)}>Add Remote</Button>
-    </div>
-  ) : (
-    <RemoteRoom />
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Remotes</CardTitle>
+      </CardHeader>
+      <CardContent>
+        {!hasRemotes ? (
+          <div>
+            <Button onClick={() => connect(start, pause)}>Add Remote</Button>
+          </div>
+        ) : (
+          <RemoteRoom />
+        )}
+      </CardContent>
+    </Card>
   );
 };
 
@@ -24,16 +34,12 @@ const RemoteRoom = () => {
     (state) => state.connectedRemotes
   );
 
-  return (
+  return isReady ? (
     <div>
-      {isReady ? (
-        <div>
-          <h2>Timer ID: {roomId}</h2>
-          <h2>Connected Remotes: {connectedRemotes}</h2>
-        </div>
-      ) : (
-        <h2>Connecting...</h2>
-      )}
+      <h2>Timer ID: {roomId}</h2>
+      <h2>Connected Remotes: {connectedRemotes}</h2>
     </div>
+  ) : (
+    <h2>Connecting...</h2>
   );
 };

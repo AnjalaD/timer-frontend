@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { TimerProvider } from "../components/timer/timer-provider";
 import { ControlPanel } from "../components/timer/control-panel";
 import { Display } from "../components/timer/display";
@@ -26,16 +25,21 @@ export const TimerPage = () => {
               )}
             >
               {showPanel && (
-                <>
+                <div className="px-8">
                   <div className="mb-8">
-                    <h1>Timer</h1>
-                    <Link to="/">Home</Link>
+                    <h1 className="text-4xl font-bold">
+                      Timer
+                      <span className="text-sm font-semibold">
+                        &nbsp;with&nbsp;
+                      </span>
+                      Remote
+                    </h1>
                   </div>
 
                   <ControlPanel />
 
                   <div className="absolute -right-px top-1/2 transform -translate-y-1/2 w-px h-4/5 bg-white" />
-                </>
+                </div>
               )}
 
               <Button

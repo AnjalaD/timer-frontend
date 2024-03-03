@@ -1,14 +1,12 @@
-import { UiControls } from "./ui-controls";
 import { TimerControls } from "./timer-controls";
-import { MusicControls } from "./music-controls";
 import { Remotes } from "./remotes";
+import { Settings } from "./settings";
 
 export const ControlPanel = () => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-6">
       <TimerControls />
-      <UiControls />
-      <MusicControls />
+      <Settings />
       <Remotes />
     </div>
   );
