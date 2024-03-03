@@ -1,6 +1,7 @@
 import { UiControls } from "./ui-controls";
 import { TimerControls } from "./timer-controls";
 import { MusicControls } from "./music-controls";
+import { Remotes } from "./remotes";
 
 export const ControlPanel = () => {
   return (
@@ -8,6 +9,7 @@ export const ControlPanel = () => {
       <TimerControls />
       <UiControls />
       <MusicControls />
+      <Remotes />
     </div>
   );
 };
